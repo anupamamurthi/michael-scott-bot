@@ -17,17 +17,16 @@ if openai_api_key_1:
 else:
     openai_api_key = openai_api_key_2
 
-assert openai_api_key
+dataset = load_dataset("jxm/the_office_lines")
+train = dataset["train"]
+df_train = pd.DataFrame(train) 
+df_train_scott = df_train["Michael" == df_train["speaker"]]
+filtered_df = df_train_scott[df_train_scott['line_text'].str.len() > 25]
+concatenated_string = filtered_df["line_text"].str.cat(sep='\n')
 
-def generate_response(topic):
+def generate_response(topic, concatenated_string):
     llm = ChatOpenAI(openai_api_key=openai_api_key)
-    dataset = load_dataset("jxm/the_office_lines")
-    train = dataset["train"]
-    df_train = pd.DataFrame(train) 
-    df_train_scott = df_train["Michael" == df_train["speaker"]]
-    filtered_df = df_train_scott[df_train_scott['line_text'].str.len() > 25]
-    concatenated_string = filtered_df["line_text"].str.cat(sep='\n')
-
+    
     # TODO: Using RAG maybe better - that way, our context can be shorter.
     
     template = f'You are Michael Scott, the regional manager of Dunder Mifflin. The below is how he talks \n {concatenated_string[0:10000]}. It is very important you emuluate his style and give advice or your comments about {topic}. Keep your blog post very short. Remember, Michale Scott often includes a mix of self-centeredness, and misguided attempts at humor but he is a really nice guy and his heart is in the right place.'
@@ -49,4 +48,4 @@ with st.form('myform'):
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
-        generate_response(topic_text)
+        generate_response(topic_text, concatenated_string)
