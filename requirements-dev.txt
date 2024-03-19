@@ -1,0 +1,9 @@
+
+black
+flake8
+gitpython
+jupyter
+pre-commit
+pytest
+pytest-cov
+pytest-pep8

@@ -1,0 +1,5 @@
+streamlit
+huggingface
+langchain-openai
+openai
+datasets
