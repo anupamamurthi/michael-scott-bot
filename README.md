@@ -1,6 +1,8 @@
 # michael-scott-bot
 
-Want advice from Michael Scott? You got it!
+Want advice from Michael Scott? You got it! https://michael-scott-bot.streamlit.app/ 
+
+![Alt Text](https://github.com/anupamamurthi/michael-scott-bot/blob/main/michael_scott_bot_app.png)
 
 ### Set up a dev env
 `virtualenv .venv`
@@ -29,3 +31,6 @@ Make sure you set OPENAI_KEY environment variable (or enter it in the streamlit 
 If you are committing to a branch that is in DRAFT mode or work in progress and if you want to commit without having to worry about formatting, one could always use the "no-verify" flag
 
 `git commit -m "Some comments" --no-verify`
+
+
+![Alt Text](https://github.com/anupamamurthi/michael-scott-bot/blob/main/michael_scott.jpg)
